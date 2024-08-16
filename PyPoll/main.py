@@ -34,9 +34,27 @@ with open(csvpath, newline="", encoding='utf-8') as csvfile:
         countpercent = (count/totalvotes) *100
         #print vote percent for candidate
         print(f"vote percent {countpercent} : candidate name {vote}")
+    #winning candidate finder
+    winner = max(votecount.values())
+    winpercent = round((winner/totalvotes)*100,2)
+    win = [key for key in votecount if votecount[key] == winner]
+    #print(str(win))
+
     #print candidate list
     print(candidatelist)
     #print total votes cast
     print(totalvotes)
     #print vote per person
     print(votecount)
+
+with open(output_file, "w") as outputfile:
+    print("Election Results",file=outputfile)
+    print("---------------------------------",file=outputfile)
+    print(f"Total Votes : {totalvotes }",file=outputfile)
+    print("---------------------------------",file=outputfile)
+    print(f'Charles Casper Stockham : {countpercent}% ({candidatelist["Charles Casper Stockham"]})',file=outputfile)
+    print(f'Diana DeGette : {countpercent}% ({candidatelist["Diana DeGette"]})',file=outputfile)
+    print(f'Raymon Anthony Doane : {countpercent}% ({candidatelist["Raymon Anthony Doane"]})',file=outputfile)
+    print("---------------------------------",file=outputfile)
+    print(f'Winner :  {winner}',file=outputfile)
+    print("---------------------------------",file=outputfile)
