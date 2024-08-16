@@ -1,5 +1,5 @@
 #import necessary systems
-import os, csv
+import os, csv, pathlib
 
 #select correct csv from resource file
 csvpath = os.path.join("Resources","election_data.csv")
@@ -47,14 +47,15 @@ with open(csvpath, newline="", encoding='utf-8') as csvfile:
     #print vote per person
     print(votecount)
 
-with open(output_file, "w") as outputfile:
+file_path = pathlib.Path("output_file.txt")
+with file_path.open( "w") as outputfile:
     print("Election Results",file=outputfile)
     print("---------------------------------",file=outputfile)
     print(f"Total Votes : {totalvotes }",file=outputfile)
     print("---------------------------------",file=outputfile)
-    print(f'Charles Casper Stockham : {countpercent}% ({candidatelist["Charles Casper Stockham"]})',file=outputfile)
-    print(f'Diana DeGette : {countpercent}% ({candidatelist["Diana DeGette"]})',file=outputfile)
-    print(f'Raymon Anthony Doane : {countpercent}% ({candidatelist["Raymon Anthony Doane"]})',file=outputfile)
+    print(f'Charles Casper Stockham : {countpercent}% ({candidatelist[0]})',file=outputfile)
+    print(f'Diana DeGette : {countpercent}% ({candidatelist[1]})',file=outputfile)
+    print(f'Raymon Anthony Doane : {countpercent}% ({candidatelist[2]})',file=outputfile)
     print("---------------------------------",file=outputfile)
-    print(f'Winner :  {winner}',file=outputfile)
+    print(f'Winner :  {winner} {str(win)}',file=outputfile)
     print("---------------------------------",file=outputfile)
