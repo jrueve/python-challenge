@@ -16,7 +16,7 @@ with open(csvpath, newline="", encoding='utf-8') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
 
     csv_header = next(csvreader)
-
+#define empty lvariables to be filled later
     data_dict = {}
     totalmonths = 0
     total = 0
@@ -46,6 +46,7 @@ with open(csvpath, newline="", encoding='utf-8') as csvfile:
     #define final profit as zero to start
     finalprofit = 0
 
+    #change profit list values to int from string
     for i in range(0, len(profitlist)):
         profitlist[i] = int(profitlist[i])
     
@@ -77,8 +78,23 @@ with open(csvpath, newline="", encoding='utf-8') as csvfile:
     #use index value to find month greatest decrease happened
     greatestdecreasedate = datelist[greatest_decrease_index-1]
 
-#print our findings
-file_path = pathlib.Path("output_file.txt")
+#print total months
+print(totalmonths)
+#print total profit
+print(total)
+#print greatest increase in profit
+print(greatestincrease)
+#print greatest decrease in profit
+print(greatestdecrease)
+#print average change in profit
+print(avgChange)
+#print greatest increase in profit date
+print(greatestincreasedate)
+#print greatest decrease in profit date
+print(greatestdecreasedate)
+
+#print to text file all our results in string
+file_path = pathlib.Path("Analysis","output_file.txt")
 with file_path.open( "w") as outputfile:
     print("Financial Ananlysis",file=outputfile) 
     print("--------------------------------",file =outputfile)
