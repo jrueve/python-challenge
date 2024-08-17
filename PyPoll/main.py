@@ -14,7 +14,6 @@ with open(csvpath, newline="", encoding='utf-8') as csvfile:
 #define empty variables to be filled later
     totalvotes = 0
     candidatelist = []
-    votelist = []
     votecount = {}
 
 #loop through each row in csv to count votes cast, define candidates as correct collumn
@@ -23,8 +22,6 @@ with open(csvpath, newline="", encoding='utf-8') as csvfile:
         totalvotes += 1
         #define candidate row
         candidate = row[2]
-        #add every name in row to list to be counted and referred to later
-        votelist.append(candidate)
         #if candidate not already on list then add to list when name changes
         if candidate not in candidatelist:
             candidatelist.append(candidate)
@@ -53,7 +50,6 @@ with open(csvpath, newline="", encoding='utf-8') as csvfile:
     winpercent = round((winner/totalvotes)*100,3)
     #find name of winner
     win = [key for key in votecount if votecount[key] == winner]
-    #print(str(win))
 
     #print candidate list
     print(candidatelist)
